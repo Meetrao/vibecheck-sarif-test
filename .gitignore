@@ -1,0 +1,4 @@
+# VibeCheck is checked out here during CI; keep it out of the scan.
+.vibecheck/
+node_modules/
+*.sarif

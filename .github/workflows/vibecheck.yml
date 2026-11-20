@@ -1,0 +1,37 @@
+name: VibeCheck SARIF test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # VibeCheck is private, so a public repo can't `uses:` it directly. Check it out with a
+      # read-only token instead. The folder is git-ignored, so it isn't scanned.
+      - uses: actions/checkout@v4
+        with:
+          repository: Meetrao/vibe-coded-app-fixer
+          ref: v1
+          token: ${{ secrets.VIBECHECK_TOKEN }}
+          path: .vibecheck
+          persist-credentials: false
+
+      - uses: ./.vibecheck
+        id: vibecheck
+        with:
+          fail-on: none
+          sarif-file: vibecheck.sarif
+
+      - uses: github/codeql-action/upload-sarif@v4
+        if: always()
+        with:
+          sarif_file: vibecheck.sarif
