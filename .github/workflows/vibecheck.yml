@@ -16,12 +16,12 @@ jobs:
       - uses: actions/checkout@v4
 
       # VibeCheck is private, so a public repo can't `uses:` it directly. Check it out with a
-      # read-only token instead. The folder is git-ignored, so it isn't scanned.
+      # read-only deploy key for that one repo instead. The folder is git-ignored, so it isn't scanned.
       - uses: actions/checkout@v4
         with:
           repository: Meetrao/vibe-coded-app-fixer
           ref: v1
-          token: ${{ secrets.VIBECHECK_TOKEN }}
+          ssh-key: ${{ secrets.VIBECHECK_DEPLOY_KEY }}
           path: .vibecheck
           persist-credentials: false
 

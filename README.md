@@ -6,4 +6,4 @@ A tiny fixture app with known security problems: open Firestore rules, SQL injec
 
 It contains no secrets, not even fake ones.
 
-The workflow in `.github/workflows/vibecheck.yml` checks out VibeCheck (a private repo) with the `VIBECHECK_TOKEN` secret, which is a fine-grained token with read-only access to that one repo. It then runs the action and uploads `vibecheck.sarif`.
+The workflow in `.github/workflows/vibecheck.yml` checks out VibeCheck (a private repo) with the `VIBECHECK_DEPLOY_KEY` secret, which is a read-only deploy key for that one repo. It then runs the action and uploads `vibecheck.sarif`.
