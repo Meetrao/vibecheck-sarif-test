@@ -13,11 +13,11 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # VibeCheck is private, so a public repo can't `uses:` it directly. Check it out with a
       # read-only deploy key for that one repo instead. The folder is git-ignored, so it isn't scanned.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: Meetrao/vibe-coded-app-fixer
           ref: v1
